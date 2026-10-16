@@ -143,6 +143,26 @@
       "from": "→",
       "name": "RIGHTWARDS ARROW",
       "to": "->"
+    },
+    {
+      "from": "‐",
+      "name": "HYPHEN",
+      "to": "-"
+    },
+    {
+      "from": "‑",
+      "name": "NON-BREAKING HYPHEN",
+      "to": "-"
+    },
+    {
+      "from": "‒",
+      "name": "FIGURE DASH",
+      "to": "-"
+    },
+    {
+      "from": "−",
+      "name": "MINUS SIGN",
+      "to": "-"
     }
   ],
   "words": [

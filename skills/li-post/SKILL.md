@@ -18,8 +18,10 @@ posted it.
 
 1. Read `~/.claude/linkedin/voice.md` if it exists. That file is the user's
    voice profile: how they talk, what they never say, who they are talking to.
-   If it does not exist, ask for **three of their own past posts**, infer the
-   voice from those, and write the file. Do not skip this and do not invent a
+   If it does not exist, ask for **three of their own past posts**, plus their
+   audience's timezone and whether they are on a free or Premium account,
+   infer the voice from those, and write the file using the template at
+   `templates/voice.md` in this plugin. Do not skip this and do not invent a
    voice. A post in the wrong voice is worse than no post.
 2. Read `hooks.json` in this folder. All 21 formulas, with templates, filled
    examples, what each is for, and how each one usually gets ruined.
@@ -32,7 +34,9 @@ posted it.
 LinkedIn rewards dwell time, saves and comments, in that order. So:
 
 ```
-Line 1     the hook. Alone. It has to survive truncation at ~140 chars mobile.
+Line 1     the hook. Alone. The feed cuts posts at roughly 210 characters
+           (often less on phones, and line breaks cut it sooner), so the
+           hook has to work in the first ~140 characters.
 Line 2     the payoff of line 1, not setup for line 3.
 Body       short paragraphs, 1-3 lines each, blank line between every one.
            No wall. The white space is the format.
@@ -42,7 +46,11 @@ Close      one specific question, or one instruction. Never both.
 
 Length: 900-1,300 characters is the working range for a text post. Under 400
 reads as a thought, not a post. Over 2,000 needs to earn every line, and the
-"see more" tap has to be paid for by line 2.
+"see more" tap has to be paid for by line 2. LinkedIn's hard limit is 3,000
+characters; count and show the length.
+
+If the idea has steps or a sequence, suggest `/li-carousel` instead: document
+posts are currently among the strongest formats for reach and saves.
 
 ## The loop
 
@@ -53,9 +61,13 @@ ship and why, in one sentence.
 
 **2. Draft the full post** on the strongest hook.
 
-**3. Humanize it.** Run the draft through `/li-human` before showing it. Every
-post from this skill ships humanized. That is not an optional extra step, it
-is the reason the draft is worth reading.
+**3. Humanize it.** Run the draft through `/li-human` before showing it, and
+rewrite every line it flags yourself. Every post from this skill ships
+humanized. Since July 2026 LinkedIn readers can report a post as "Seems like
+AI slop", and reported posts are shown less outside the user's network, so
+this step is not optional. But the thing that actually prevents a report is
+the true, specific story from step 3 of "Before you write", told in the
+user's voice. Cleaning cannot rescue a post that has nothing in it.
 
 **4. Print the block.** Copy-ready, in a fenced block, exactly as it should be
 pasted. Then, underneath:
@@ -64,8 +76,9 @@ pasted. Then, underneath:
 POST READY
 hook:      #17 Time Anchor
 length:    1,140 characters
-humanizer: 6 artefacts stripped, human score 84 PASS
-post at:   Tuesday 8:15am ET (from your plan)
+humanizer: 3 characters cleaned, 4 lines rewritten, human score 84 PASS
+link:      in first comment (reach) | in body (clicks) | none
+post at:   Tuesday 8:15am, your audience's timezone (from your plan)
 
 Reply "yes" to log it, or tell me what to change.
 ```
@@ -83,8 +96,13 @@ and the first line, so `/li-audit` has a history to work from later.
   question has to be one only this post could ask.
 - **Three hashtags maximum**, at the bottom, and only if they are real
   categories someone follows.
-- **No links in the post body.** LinkedIn suppresses posts with outbound
-  links. Put the link in the first comment and say so in the receipt.
+- **Links are a trade-off, so ask what the post is for.** Posts with an
+  outbound link in the body tend to get less reach. Moving the link to the
+  first comment protects reach but loses a large share of the clicks. If the
+  goal is reach or conversation, put the link in the first comment and say so
+  in the receipt. If the goal is clicks (a sign-up, a launch, a job post), keep
+  the link in the body and accept the smaller reach. Never put a link in
+  line 1.
 - **Never fabricate.** No invented metrics, clients, revenue figures or
   outcomes under the user's name, even as a placeholder. If a number is
   needed and unknown, leave `{{your number}}` in the draft and flag it.

@@ -9,8 +9,9 @@ description: >-
 
 # li-carousel
 
-Document posts are the highest-dwell format on LinkedIn, because a swipe is
-counted and a scroll is not. The format rewards one idea broken into steps.
+Document posts are currently among the best-performing formats on LinkedIn:
+one large 2025-26 analysis found them earning more reach, engagement and saves
+than the average post, partly because every swipe counts as time spent. The format rewards one idea broken into steps.
 It punishes a text post cut into pieces.
 
 ## When to use it instead of a text post
@@ -23,8 +24,9 @@ way carousels fail, and if that is what the user has, say so and hand them to
 
 ## Structure
 
-8-12 slides. Under 8 is a text post. Over 12 and the completion rate falls off
-a cliff.
+6-10 slides is the sweet spot; 12 is the ceiling. Under 5 feels like a text
+post cut up. Past 12, most readers drop off before the last slide, which is
+where the recap and the call to action live.
 
 ```
 1        COVER      the hook, 6 words or fewer, plus one line of promise

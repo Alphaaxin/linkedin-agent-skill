@@ -55,8 +55,12 @@ But state this plainly: **the day and hour matter far less than whether the
 first line is good.** If the user is optimising posting times before their
 hooks work, they are polishing the wrong thing, and you should say so.
 
-Anchor the times to their audience's timezone, not the user's, if those
-differ.
+Anchor the times to their **audience's** timezone, not the user's, and read
+it from `voice.md` (`Audience timezone`). If it is not there, ask; never
+default to US Eastern. Show each time in both zones when they differ, for
+example "8:15am IST (audience: India)" or "7:30am PT / 8:00pm IST (audience:
+US West Coast)". For an audience spread across regions, pick the region with
+the most buyers, not the most followers.
 
 ## Who to engage with
 

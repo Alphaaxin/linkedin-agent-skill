@@ -27,14 +27,31 @@ If there is no specific reason to message this person today, say so. A message
 with no reason is what everyone else sends, and it is why their reply rate is
 2%.
 
-## The invite note (200 characters)
+## The invite note (200 characters free, 300 Premium)
+
+**Check the user's account first.** Free (Basic) LinkedIn accounts can add a
+personal note to only a handful of invites a month - reports range from 3 to
+about 10, and LinkedIn does not publish the number - and the note is capped
+at 200 characters. Premium accounts get 300 characters
+and no monthly cap. If you do not know which they have, ask.
+
+On a free account, spend notes only on the people who matter most. For
+everyone else, the better route is:
+
+1. Comment usefully on two or three of their posts first (`/li-comment`), so
+   the name is familiar.
+2. Send the invite **without** a note.
+3. Put the specific reference in the first message after they accept.
+
+When a note is used:
 
 ```
 {one specific reference to them} + {one line of who you are} + {no ask}
 ```
 
-The note asks for nothing. It exists to make the accept obvious. Under 200
-characters including spaces - count them and show the count.
+The note asks for nothing. It exists to make the accept obvious. Count the
+characters including spaces and show the count against the right limit
+(200 or 300).
 
 ```
 Saw your post on killing the discovery call - we did the same thing in March
@@ -48,7 +65,8 @@ Wait a day. Then:
 
 - **Two to four sentences.** A screen of text is a delete.
 - **Reference the specific thing** from the note - continuity is the whole
-  reason the note was specific.
+  reason the note was specific. If the invite went without a note, this is
+  where the specific reference goes, in the first sentence.
 - **Give something before asking.** A number, a template, a name, an answer.
 - **One ask, and make it small.** "Worth a 15-minute call?" beats "let me walk
   you through our platform".
@@ -73,11 +91,16 @@ Then stop. A third follow-up converts nobody and costs the relationship.
 - Never fabricate a mutual connection, a shared school, or having read
   something the user has not read.
 - Never write the message that opens "I hope this message finds you well".
-- Never send more than 20 invites a day. Beyond that, LinkedIn throttles the
-  account, and a throttled account is a dead one.
+- Keep invites to about 20 a day and well under LinkedIn's weekly cap
+  (commonly reported at 100-250 a week, lower for new or low-acceptance
+  accounts).
+  LinkedIn does not publish exact numbers; a low acceptance rate gets an
+  account restricted faster than volume does. Withdraw invites that have sat
+  unanswered for three weeks.
 
 ## Output
 
-The invite note with its character count, the first message, and both
-follow-ups with the day they go out. All humanized through `/li-human`. The
+The invite note with its character count (or "no note - free account, save
+it" with the reason), the first message, and both follow-ups with the day
+they go out. All humanized through `/li-human`. The
 user sends every one of them by hand.

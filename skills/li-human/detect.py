@@ -66,8 +66,8 @@ def check_burstiness(text):
         return 50.0, "too short to judge"
     mean = statistics.mean(lens)
     cv = statistics.pstdev(lens) / mean if mean else 0
-    score = scale(cv, human=0.70, machine=0.22)
-    return score, f"variation {cv:.2f} across {len(lens)} sentences (want 0.55+)"
+    score = scale(cv, human=0.55, machine=0.15)
+    return score, f"variation {cv:.2f} across {len(lens)} sentences (want 0.40+)"
 
 
 def check_specificity(text):
@@ -104,18 +104,31 @@ def check_slop(text, lex):
 
 
 def check_fingerprint(text):
-    """Characters a phone keyboard does not produce."""
+    """Characters a keyboard does not produce.
+
+    Curly quotes and the ellipsis character are NOT counted: iPhone and many
+    Android keyboards insert them by default, so they say nothing about who
+    wrote the text. Em dashes still count (lightly), because they are a
+    widely-noticed AI tell even though people do type them."""
     invisible = sum(1 for c in text if unicodedata.category(c) == "Cf")
-    em = text.count("—")
-    curly = sum(text.count(c) for c in "‘’“”")
-    ellip = text.count("…")
-    nbsp = sum(text.count(c) for c in "   ")
-    total = invisible * 4 + em * 2 + curly + ellip + nbsp
+    em = text.count("\u2014")
+    nbsp = sum(text.count(c) for c in "\u00a0\u202f\u2007")
+    total = invisible * 4 + em * 2 + nbsp
     per1k = total * 1000 / max(len(text), 1)
     score = scale(per1k, human=0.0, machine=12.0)
-    detail = (f"{invisible} invisible, {em} em dash, {curly} curly quote, "
-              f"{ellip} ellipsis, {nbsp} hard space")
+    detail = f"{invisible} invisible, {em} em dash, {nbsp} hard space (curly quotes not counted)"
     return score, detail
+
+
+def normalise(text):
+    """Make phone typography comparable to keyboard typography before the
+    word-level checks, so a curly apostrophe still counts as a contraction and
+    a non-breaking hyphen still matches the lexicon."""
+    for a, b in (("\u2018", "'"), ("\u2019", "'"), ("\u201c", '"'), ("\u201d", '"'),
+                 ("\u2026", "..."), ("\u2010", "-"), ("\u2011", "-"),
+                 ("\u2012", "-"), ("\u2212", "-")):
+        text = text.replace(a, b)
+    return text
 
 
 def check_voice(text, lex):
@@ -156,11 +169,12 @@ CHECKS = ["BURSTINESS", "SPECIFICITY", "SLOP DENSITY", "FINGERPRINT", "VOICE"]
 
 def run(text, lex):
     results = {}
-    results["BURSTINESS"] = check_burstiness(text)
-    results["SPECIFICITY"] = check_specificity(text)
-    results["SLOP DENSITY"] = check_slop(text, lex)
+    flat = normalise(text)
+    results["BURSTINESS"] = check_burstiness(flat)
+    results["SPECIFICITY"] = check_specificity(flat)
+    results["SLOP DENSITY"] = check_slop(flat, lex)
     results["FINGERPRINT"] = check_fingerprint(text)
-    results["VOICE"] = check_voice(text, lex)
+    results["VOICE"] = check_voice(flat, lex)
     scores = [results[c][0] for c in CHECKS]
     # The weakest check drags the verdict: a detector only needs one signal.
     overall = statistics.mean(scores) * 0.6 + min(scores) * 0.4

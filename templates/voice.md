@@ -16,6 +16,10 @@ at the answers.
 - **What I do, in one sentence:**
 - **Who I am writing for:** (be specific: "agency owners doing $1-5M", not "professionals")
 - **What I sell:**
+- **My timezone:** (e.g. IST, Asia/Kolkata)
+- **Audience timezone:** (where most of my buyers are, e.g. "India, IST" or "US East Coast, ET")
+- **LinkedIn account:** (Free / Premium - changes invite-note limits)
+- **Spelling:** (US / UK / Indian English)
 
 ## What I sound like
 
