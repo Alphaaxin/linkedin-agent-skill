@@ -14,9 +14,11 @@ gets executed. Run it once a week, on the same day.
 
 ## Input
 
-If `~/.claude/linkedin/voice.md` and `log.md` exist, read them - the plan
-should not repeat a theme from the last fortnight. If they do not exist, ask
-for four things and write them down:
+Read whichever of these exist in `~/.claude/linkedin/`: `voice.md` (who the
+user is), `log.md` (the plan should not repeat a theme from the last
+fortnight) and `audit.md` (what the user's own data says to stop and do
+more of - it outranks the defaults below). If voice.md does not exist, ask
+for four things and save them into it:
 
 1. What the user sells, and to whom.
 2. The three or four themes they want to be known for.
@@ -40,7 +42,7 @@ Mix across the week, never two of the same type back to back:
 | **Offer** | 1 per fortnight | what you sell, said plainly, no apology |
 
 For each slot give: the theme, the specific angle drawn from what actually
-happened this week, and the hook formula number from `li-post/hooks.json` that
+happened this week, and the hook formula number from `hooks.json` (in this folder, or `../li-post/hooks.json`) that
 fits it. Not a topic - an angle. "AI" is not a plan. "The proposal we lost
 because our AI draft had an em dash in it" is a post.
 
@@ -94,5 +96,6 @@ ENGAGE  (5 reach / 3 peers / 2 buyers)
 Say "write Tuesday" and I will draft it.
 ```
 
-Write the plan to `~/.claude/linkedin/plan.md` so the other skills can read it.
+Write the plan to `~/.claude/linkedin/plan.md` so `/li-post` can read it. If
+files cannot be written here, give the user the plan to keep and paste back.
 Nothing is scheduled or posted anywhere - this is a plan, and the user runs it.

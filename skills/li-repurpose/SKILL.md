@@ -43,7 +43,7 @@ Each extract becomes one post, and each post has to stand completely on its
 own - the reader has not seen the video and never will. Never write "as I
 mentioned in my latest video". The post is the thing.
 
-Assign a hook formula from `li-post/hooks.json` to each, and vary them: five
+Assign a hook formula from `hooks.json` (in this folder, or `../li-post/hooks.json`) to each, and vary them: five
 posts from one source with the same hook shape reads as a content mill.
 
 Order them across the week so the strongest claim goes first, the story goes

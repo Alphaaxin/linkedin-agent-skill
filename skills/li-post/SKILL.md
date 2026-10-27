@@ -20,12 +20,14 @@ posted it.
    voice profile: how they talk, what they never say, who they are talking to.
    If it does not exist, ask for **three of their own past posts**, plus their
    audience's timezone and whether they are on a free or Premium account,
-   infer the voice from those, and write the file using the template at
-   `templates/voice.md` in this plugin. Do not skip this and do not invent a
-   voice. A post in the wrong voice is worse than no post.
-2. Read `hooks.json` in this folder. All 21 formulas, with templates, filled
+   infer the voice from those, and write the file using `voice-template.md`
+   in this folder. Do not skip this and do not invent a voice. A post in the
+   wrong voice is worse than no post.
+2. Read `~/.claude/linkedin/plan.md` if it exists, for this post's slot,
+   theme and suggested hook.
+3. Read `hooks.json` in this folder. All 21 formulas, with templates, filled
    examples, what each is for, and how each one usually gets ruined.
-3. If the idea is thin - "post about AI" - do not pad it. Ask one batched
+4. If the idea is thin - "post about AI" - do not pad it. Ask one batched
    question: what happened, to whom, and what did it cost or return. A post
    needs one specific true thing. Get it before writing.
 
@@ -84,8 +86,22 @@ Reply "yes" to log it, or tell me what to change.
 ```
 
 **5. Never publish.** This skill produces text. The user posts it. On "yes",
-append the post to `~/.claude/linkedin/log.md` with the date, the hook used
-and the first line, so `/li-audit` has a history to work from later.
+append one line to `~/.claude/linkedin/log.md`:
+
+```
+2026-10-27 | post | #17 Time Anchor | Writing a proposal used to take me 5 hours...
+```
+
+That gives `/li-audit` a history of which hook each post used.
+
+## Where your files live
+
+This pack keeps a few small files in `~/.claude/linkedin/` so the skills can
+share them: `voice.md` (how the user writes), `log.md` (what was posted),
+`plan.md` (this week's plan) and `audit.md` (what the data says works). If
+that folder cannot be read or written in this environment (for example a
+Claude.ai chat with no persistent files), do not fail: ask the user to paste
+the file's contents, and at the end give them the updated contents to save.
 
 ## Rules that make the difference
 

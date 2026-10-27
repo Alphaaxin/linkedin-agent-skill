@@ -23,7 +23,24 @@ panel before you ever see it.
 
 ## Install
 
-Paste this into Claude:
+**New here? Read [HOW-TO-USE.md](HOW-TO-USE.md)** - install steps for the
+Claude app and Claude Code, first-time setup, an example prompt for every
+skill, and a weekly routine.
+
+**Claude app (claude.ai, desktop, phone):** download the skill ZIPs from
+[`dist/`](dist), then **Customize -> Skills -> + -> Create skill -> Upload a
+skill**, one ZIP per skill. Needs Code execution turned on in Settings ->
+Capabilities.
+
+**Claude Code, as a plugin:**
+
+```
+/plugin marketplace add OWNER/linkedin-agent-skill
+/plugin install linkedin-agent
+```
+
+**Or let Claude do it.** Paste this into a Claude session that can run
+commands:
 
 ```
 https://github.com/OWNER/linkedin-agent-skill
@@ -31,29 +48,9 @@ https://github.com/OWNER/linkedin-agent-skill
 Install this skill, then confirm /li-post works.
 ```
 
-Or do it yourself, in Claude Code:
-
-```bash
-git clone https://github.com/OWNER/linkedin-agent-skill.git
-cp -r linkedin-agent-skill/skills/li-* ~/.claude/skills/
-```
-
-Or as a plugin:
-
-```
-/plugin marketplace add OWNER/linkedin-agent-skill
-/plugin install linkedin-agent
-```
-
-Project-local instead of global: copy the same folders into your repo's
-`.claude/skills/`. No Claude Code at all? Paste any single `SKILL.md` at the
-top of a chat and it runs as a mode - you lose the two Python tools, which is
-most of the point of `/li-human`, but the rest works.
-
-Then spend ten minutes on `templates/voice.md`. Copy it to
-`~/.claude/linkedin/voice.md` and fill it in, or paste three of your own posts
-into Claude and say "write my voice.md from these". Every skill reads that
-file. Skip it and everything comes out sounding like everyone else.
+Then set up your voice: start `/li-post` and paste three of your own posts.
+Claude writes `~/.claude/linkedin/voice.md` from them, and every skill reads
+it. Skip it and everything comes out sounding like everyone else.
 
 ## The eleven
 
@@ -186,7 +183,11 @@ skills/li-human/slop.json        the lexicon: 113 terms, 17 invisible classes, 1
 skills/li-human/humanize.py      the safe cleaning passes and the rewrite list
 skills/li-human/detect.py        the five-check panel
 skills/li-profile/rubric.json    the 100-point profile score
-templates/voice.md               your voice profile. Fill this in first.
+skills/li-post/voice-template.md the voice profile template (also in templates/voice.md)
+dist/li-*.zip                    one ZIP per skill, for uploading in the Claude app
+tests/run_tests.py               60 checks: files, links between skills, humanizer behaviour
+tools/build_zips.py              rebuilds dist/ after you change a skill
+HOW-TO-USE.md                    the full guide
 ```
 
 ## Credit

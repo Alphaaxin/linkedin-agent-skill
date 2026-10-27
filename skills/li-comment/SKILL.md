@@ -39,7 +39,8 @@ Pick by what the post actually is. Never default to type 1.
 
 ## Rules
 
-- **2 to 4 sentences.** Longer reads as a hijack. Shorter reads as filler.
+- **2 to 4 sentences** (type 9, the one-liner, is the only exception).
+  Longer reads as a hijack. Shorter reads as filler.
 - **Never open with "Great post"**, "Love this", "So true", "Couldn't agree
   more", "This resonates", or the author's first name followed by an
   exclamation mark. All six are invisible.
@@ -81,7 +82,9 @@ part people reply to.
 If the user wants an engagement round, ask for the 5-10 posts as pasted text
 in one message, return one comment each in a single block, and keep a running
 note of who they have already commented on this week in
-`~/.claude/linkedin/log.md`. Commenting on the same three people every day is
+`~/.claude/linkedin/log.md`, one line per comment:
+`2026-10-27 | comment | @author | first words of the comment`. If that file
+cannot be written here, give the user the lines to keep. Commenting on the same three people every day is
 visible and it looks like what it is.
 
 ## Never

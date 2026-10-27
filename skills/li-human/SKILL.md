@@ -33,7 +33,16 @@ is the smallest part of that. So the order of importance here is:
 
 ## The two tools
 
-Both live in this folder and both actually run. Use them; do not eyeball this.
+Both live in this skill's folder (its base directory) and both actually run.
+Use them; do not eyeball this. Save the draft to a temporary file, then run
+the scripts by their full path, for example
+`python3 -I <skill folder>/humanize.py /tmp/draft.txt --report`. They need
+only Python 3, with no packages to install.
+
+If Python is not available here, do the same checks by hand: remove invisible
+characters, then go through `slop.json` in this folder and rewrite every em
+dash, stock phrase and structural tell it lists. Say that the score was not
+run.
 
 ```bash
 python3 -I humanize.py draft.txt -o clean.txt --report   # safe clean + list of things to rewrite

@@ -1,5 +1,24 @@
 # Changelog
 
+## 1.2.0 (27 Oct 2026)
+
+- HOW-TO-USE.md: install for the Claude app and Claude Code, first-time
+  setup, an example prompt for every skill, a weekly routine, troubleshooting.
+- dist/: one ready-to-upload ZIP per skill for the Claude app. li-plan,
+  li-audit and li-repurpose carry their own copy of hooks.json so each ZIP
+  works alone. tools/build_zips.py rebuilds them.
+- tests/run_tests.py: 60 automated checks (skill headers, JSON files, links
+  between skills, humanizer and detector behaviour).
+- Skills now share files consistently: voice.md, log.md (one fixed line
+  format), plan.md (li-post reads it), audit.md (li-audit writes it, li-plan
+  reads it). Every skill falls back to paste-and-keep when files can't be
+  saved, as in Claude app chats.
+- li-post ships its own voice-template.md, so manual installs keep it.
+- li-human explains how to run its scripts by full path, and what to do
+  without Python.
+- li-comment: the one-liner comment type is now an explicit exception to the
+  2-4 sentence rule.
+
 ## 1.1.0 (local fixes, 16 Oct 2026)
 
 Humanizer

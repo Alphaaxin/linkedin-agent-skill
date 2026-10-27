@@ -23,7 +23,8 @@ Ask for whichever the user has:
   pass.
 
 Also read `~/.claude/linkedin/log.md` if it exists, since it records which
-hook formula each post used.
+hook formula each post used (lines marked `post`). If it cannot be read here,
+ask the user which hook each top post used, or infer it from the first line.
 
 ## What to actually measure
 
@@ -46,7 +47,7 @@ impressions and 40 comments beat the one with 12,000 impressions and 6.
 With the top 5 and bottom 5 side by side, look for what actually separates
 them, and be willing to conclude something the user will not like:
 
-- Hook formula. Which numbers from `hooks.json` are in the top 5?
+- Hook formula. Which numbers from `hooks.json` (in this folder, or `../li-post/hooks.json`) are in the top 5?
 - Format. Text, document, image, video.
 - Length.
 - Theme.
@@ -84,5 +85,7 @@ STOP: listicles about tools.
 DO MORE: the ones with a cost you paid, and a number.
 ```
 
-Then hand the conclusions to `/li-plan` so next week's plan is built on the
-user's own evidence rather than on defaults.
+Then save the STOP and DO MORE lines, with the date, to
+`~/.claude/linkedin/audit.md` (or give them to the user to keep), so
+`/li-plan` builds next week on the user's own evidence rather than on
+defaults.
