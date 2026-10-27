@@ -1,4 +1,10 @@
-# The LinkedIn agent skill
+# The LinkedIn agent skill (v1.1, fixed and updated)
+
+> An updated version of [Jake Schincariol's linkedin-agent-skill](https://github.com/Jakeschincariol/linkedin-agent-skill),
+> MIT licensed. This version fixes the humanizer (it no longer swaps words
+> blindly or turns every em dash into a comma), corrects several LinkedIn
+> facts for 2026, and adds LinkedIn's "Seems like AI slop" reporting to the
+> advice. Full list in [CHANGELOG.md](CHANGELOG.md).
 
 Eleven Claude skills that run a LinkedIn account. Free, MIT, no signup, no API
 key, nothing to connect.
@@ -9,9 +15,9 @@ out of 100 and rewrites what lost points. One plans the week: what to post,
 when, and who to engage with.
 
 And one is the humanizer, which is the reason the rest are usable. It strips
-the em dashes, the slop vocabulary and the invisible watermark characters out
-of a draft, then scores what is left against a five-check detection panel
-before you ever see it.
+invisible characters out of a draft, flags every em dash, stock word and
+formula sentence for a rewrite, then scores the result against a five-check
+panel before you ever see it.
 
 **Nothing gets posted until you say yes.** These skills write. You post.
 
@@ -20,7 +26,7 @@ before you ever see it.
 Paste this into Claude:
 
 ```
-https://github.com/Jakeschincariol/linkedin-agent-skill
+https://github.com/OWNER/linkedin-agent-skill
 
 Install this skill, then confirm /li-post works.
 ```
@@ -28,14 +34,14 @@ Install this skill, then confirm /li-post works.
 Or do it yourself, in Claude Code:
 
 ```bash
-git clone https://github.com/Jakeschincariol/linkedin-agent-skill.git
+git clone https://github.com/OWNER/linkedin-agent-skill.git
 cp -r linkedin-agent-skill/skills/li-* ~/.claude/skills/
 ```
 
 Or as a plugin:
 
 ```
-/plugin marketplace add Jakeschincariol/linkedin-agent-skill
+/plugin marketplace add OWNER/linkedin-agent-skill
 /plugin install linkedin-agent
 ```
 
@@ -61,7 +67,7 @@ file. Skip it and everything comes out sounding like everyone else.
 | `/li-human` | The humanizer. Two scripts that actually run. See below. |
 | `/li-carousel` | Document posts. Slide-by-slide copy, the cover that earns the swipe, and the PDF to upload. |
 | `/li-repurpose` | One video, newsletter or transcript into a week of posts that each stand alone. |
-| `/li-dm` | The 200-character invite note, the first message, and the two follow-ups. Two. |
+| `/li-dm` | The invite note (200 characters free, 300 Premium, and only a few a month on free accounts), the first message, and the two follow-ups. Two. |
 | `/li-inbox` | Triages the inbox into lead / recruiter / peer / ask / spam, and tells you which tell gave the sequence away. |
 | `/li-audit` | Post-mortem on what you have already published. Ranks by engagement rate and reach multiple, not impressions. |
 
@@ -71,29 +77,37 @@ file. Skip it and everything comes out sounding like everyone else.
 machine, on your text, and nothing is uploaded.
 
 ```bash
-python3 humanize.py draft.txt --report      # clean it, show every change
+python3 humanize.py draft.txt --report      # safe clean + list of lines to rewrite
 python3 detect.py draft.txt                  # score it, five checks
 python3 detect.py before.txt after.txt       # prove the delta
 ```
 
-**What comes out automatically:**
+**What gets fixed automatically** (only changes that cannot alter the meaning):
 
 - **Invisible characters.** Zero-width spaces and joiners, word joiners, soft
   hyphens, byte-order marks, Unicode tag characters, non-breaking and narrow
   spaces. Your keyboard does not make these. They survive copy-paste and they
   are invisible in every editor you own.
-- **Typography.** Em dash to comma, en dash to hyphen, curly quotes to
-  straight, ellipsis to three dots.
-- **The lexicon.** 113 stock words and phrases with plain-English
-  replacements - delve, leverage, robust, seamless, crucial, testament to, "in
-  today's fast-paced world", "let that sink in" - with capitalisation preserved
-  and URLs untouched. It lives in
-  [`slop.json`](skills/li-human/slop.json) and it is meant to be edited.
+- **Typography.** En dash, non-breaking hyphen, figure dash and minus sign to a
+  plain hyphen; curly quotes to straight; ellipsis to three dots. URLs are
+  never touched.
 
-**What gets flagged instead of fixed:** "It's not just X, it's Y", rule-of-three
-triads, one-word rhetorical questions, hashtag walls, reflex engagement bait,
-uniform sentence length. Changing the shape of a sentence needs judgement, so
-those are handed back for a rewrite rather than mangled by a regex.
+**What gets flagged, with the line it sits on, for you to rewrite:**
+
+- **Em dashes.** Depending on the sentence, one becomes a full stop, a comma, a
+  colon or brackets. A blind swap to a comma makes comma splices.
+- **The lexicon.** 113 stock words and phrases - delve, leverage, robust,
+  seamless, crucial, testament to, "in today's fast-paced world", "let that
+  sink in" - each with a suggested plain alternative. A word-for-word swap
+  doesn't read the sentence ("leverage synergy" became "use overlap"), so
+  the suggestion is a hint, not a replacement. It lives in
+  [`slop.json`](skills/li-human/slop.json) and it is meant to be edited.
+- **Structural tells.** "It's not just X, it's Y", rule-of-three triads,
+  one-word rhetorical questions, hashtag walls, reflex engagement bait,
+  uniform sentence length.
+
+`--swap-words` and `--fix-dashes` bring back the old automatic replacement if
+you want it.
 
 **The five checks**, scored 0-100, higher is more human:
 
@@ -102,7 +116,7 @@ those are handed back for a rewrite rather than mangled by a regex.
 | BURSTINESS | sentence-length variation. Models write even. |
 | SPECIFICITY | numbers, names and concrete markers per 100 words |
 | SLOP DENSITY | lexicon hits per 100 words |
-| FINGERPRINT | invisible characters, em dashes, curly quotes per 1,000 |
+| FINGERPRINT | invisible characters, em dashes, hard spaces per 1,000 (curly quotes are not counted: phone keyboards add them) |
 | VOICE | contractions, person, structural tells |
 
 The verdict weights the mean at 60% and the **weakest single check** at 40%,
@@ -111,22 +125,30 @@ because a detector only needs one signal to fire.
 Run against a deliberately terrible draft:
 
 ```
-  BURSTINESS    ##################......  73.0
-  SPECIFICITY   ######################## 100.0
-  SLOP DENSITY  ........................   0.0    19 stock terms, 24.1 per 100 words
-  FINGERPRINT   ........................   0.0    1 invisible, 1 em dash, 3 curly quote
-  VOICE         ########................  33.3    3 structural tells
+  BURSTINESS    ######################..  92.4
+  SPECIFICITY   ........................   0.0    0 concrete markers
+  SLOP DENSITY  ........................   0.0    8 stock terms, 22.2 per 100 words
+  FINGERPRINT   ........................   0.0    1 invisible, 1 em dash
+  VOICE         ############............  51.8    2 structural tells
   ------------------------------------------------------------
-  HUMAN SCORE   ######..................  24.8   FLAGGED
+  HUMAN SCORE   ####....................  17.3   FLAGGED
 ```
 
-After `humanize.py`, with the flagged structures still unrewritten:
+And against a short, specific post written by a person (a real number, two
+names, varied sentences):
 
 ```
-  HUMAN SCORE   #################.......  69.7   REVIEW    (+44.9)
+  HUMAN SCORE   ###################.....  80.2   PASS
 ```
 
-The last stretch to PASS is the part the script deliberately leaves to you.
+Getting a draft from FLAGGED to PASS is a rewrite, not a cleaning pass. The
+script tells you which lines; the rewrite is yours.
+
+**Why this matters more in 2026.** Since 30 July 2026 every LinkedIn post has a
+"Seems like AI slop" report option, and LinkedIn shows reported posts less
+outside your network. Readers report posts that feel empty, not posts with an
+em dash. So the humanizer's real job is to push you toward one specific, true
+story told in your own voice.
 
 ## The fine print, which is the honest part
 
@@ -140,7 +162,7 @@ the design. It is also why the approval gate is real rather than a setting.
 
 **The five checks are local heuristics, not detector APIs.** They are modelled
 on the signals public detectors key on, and they run entirely on your machine.
-They are not GPTZero, Originality, Copyleaks, Winston or Turnitin, they do not
+They are not LinkedIn's classifier, and not GPTZero, Originality, Copyleaks, Winston or Turnitin, they do not
 call those services, and they cannot promise those verdicts. Fixing what they
 measure tends to move those numbers, because they are measuring the same
 underlying things. That is the whole claim. Nobody can honestly sell you
@@ -160,8 +182,8 @@ your name. If a draft needs a number you have not given, it comes back with
 
 ```
 skills/li-post/hooks.json        21 hook formulas: template, example, what it is for, how it gets ruined
-skills/li-human/slop.json        the lexicon: 113 terms, 17 invisible classes, 11 structural tells
-skills/li-human/humanize.py      the three cleaning passes
+skills/li-human/slop.json        the lexicon: 113 terms, 17 invisible classes, 15 typographic fixes, 11 structural tells
+skills/li-human/humanize.py      the safe cleaning passes and the rewrite list
 skills/li-human/detect.py        the five-check panel
 skills/li-profile/rubric.json    the 100-point profile score
 templates/voice.md               your voice profile. Fill this in first.
@@ -169,8 +191,11 @@ templates/voice.md               your voice profile. Fill this in first.
 
 ## Credit
 
-Made by Jake Schincariol, [opusjake.ai](https://opusjake.ai).
-The full write-up is at [opusjake.ai/r/linkedin-agent](https://opusjake.ai/r/linkedin-agent).
+Originally made by Jake Schincariol, [opusjake.ai](https://opusjake.ai).
+The original repo is [Jakeschincariol/linkedin-agent-skill](https://github.com/Jakeschincariol/linkedin-agent-skill)
+and the full write-up is at [opusjake.ai/r/linkedin-agent](https://opusjake.ai/r/linkedin-agent).
+
+This updated version (v1.1) is maintained by Mohammed Habeeb Hussain Alkaf.
 
 ## License
 
