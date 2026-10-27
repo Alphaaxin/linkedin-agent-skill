@@ -1,22 +1,22 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "total": 100,
-  "note": "Twelve items. Score each honestly - a generous score helps nobody. Most first-pass profiles land in the 30s and 40s.",
+  "note": "Twelve items. Score each against the user's goal (A-H from li-start) and its target reader - a profile can be strong for a job search and weak for winning clients. Score honestly; most first-pass profiles land in the 30s and 40s.",
   "items": [
     {
       "id": "headline",
       "points": 12,
-      "full_marks": "States who you help and what changes for them, carries one piece of proof, and is not the job title. Uses the 220 characters, not 60."
+      "full_marks": "Tells the target reader (from the user's goal) what they need in one line: the role wanted, what you're known for, who you help, or what you hire for - with one piece of proof. Not just the job title. Uses the 220 characters, not 60."
     },
     {
       "id": "about_open",
       "points": 10,
-      "full_marks": "First two lines - everything visible before 'see more' - name the reader's problem. No 'passionate about', no third-person bio, no opening with your own name."
+      "full_marks": "First two lines - everything visible before 'see more' - speak to the target reader and say why they should keep reading. No 'passionate about', no third-person bio, no opening with your own name."
     },
     {
       "id": "about_body",
       "points": 10,
-      "full_marks": "Written to one person in second person: their problem, what you do, one number as proof, what to do next. Under 1,400 characters."
+      "full_marks": "Written to that one reader: what you do or want, what you've done, one number as proof, what to do next. Under 1,400 characters."
     },
     {
       "id": "featured",

@@ -16,6 +16,11 @@ credibility with the author.
 
 ## Input
 
+Read `~/.claude/linkedin/voice.md` if it exists: comments should sound like
+the user and stay within their field and goal (a job seeker comments like a
+future colleague, a freelancer like a useful expert, a student like a curious
+learner who did the reading).
+
 The user pastes the post text (and the author's name and role if they have
 it). If they paste a screenshot, read it. If they give you a URL you cannot
 open, ask them to paste the text - do not guess what the post said, and do not

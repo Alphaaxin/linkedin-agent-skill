@@ -42,6 +42,19 @@ instead, and show the working:
 Rank by engagement rate and reach multiple, not impressions. A post with 900
 impressions and 40 comments beat the one with 12,000 impressions and 6.
 
+**Then measure against the goal.** Read the user's `Main goal` (A-H) from
+`~/.claude/linkedin/voice.md`. Engagement is a means; the goal is the end.
+Ask what the posts led to, and weigh the posts that led to it most:
+
+| Goal | Ask the user about |
+| --- | --- |
+| A, B. Get hired / start my career | recruiter messages, interview requests, profile views from target companies |
+| C. Grow where I am | invitations, internal recognition, people in the field reaching out |
+| D, E. Win clients / grow a business | enquiries, calls booked, customers, partners |
+| F. Build an audience | follower growth, newsletter subscribers, repeat commenters |
+| G. Hire people | applications and their quality |
+| H. Learn and connect | useful conversations started |
+
 ## Then find the pattern
 
 With the top 5 and bottom 5 side by side, look for what actually separates
@@ -77,7 +90,7 @@ WHAT THE DATA SAYS
 1. Posts where you were the one who looked bad: mean 6.2% vs 1.1% for
    everything else. n=6. This is your strongest signal and it is not close.
 2. Tool listicles get impressions and nothing else. High reach, no comments,
-   no leads. Three of your bottom five.
+   nothing towards your goal. Three of your bottom five.
 3. Day of week shows nothing. Your Tuesday mean and your Friday mean are
    inside the noise. Stop optimising it.
 

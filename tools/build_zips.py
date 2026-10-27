@@ -5,8 +5,8 @@ Build one ZIP per skill in dist/, ready to upload in the Claude app
 
     python3 tools/build_zips.py
 
-Skills that use the 21 hook formulas get their own copy of hooks.json, so each
-ZIP works on its own.
+Skills that use the 21 hook formulas get their own copy of hooks.json, and
+li-start gets the voice template, so each ZIP works on its own.
 """
 
 import glob
@@ -17,6 +17,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DIST = os.path.join(ROOT, "dist")
 HOOKS = os.path.join(ROOT, "skills", "li-post", "hooks.json")
 NEEDS_HOOKS = {"li-plan", "li-audit", "li-repurpose"}
+TEMPLATE = os.path.join(ROOT, "skills", "li-post", "voice-template.md")
+NEEDS_TEMPLATE = {"li-start"}
 
 os.makedirs(DIST, exist_ok=True)
 for old in glob.glob(os.path.join(DIST, "*.zip")):
@@ -31,4 +33,6 @@ for folder in sorted(glob.glob(os.path.join(ROOT, "skills", "li-*"))):
                 z.write(path, f"{name}/{os.path.basename(path)}")
         if name in NEEDS_HOOKS:
             z.write(HOOKS, f"{name}/hooks.json")
+        if name in NEEDS_TEMPLATE:
+            z.write(TEMPLATE, f"{name}/voice-template.md")
     print(f"built dist/{name}.zip")

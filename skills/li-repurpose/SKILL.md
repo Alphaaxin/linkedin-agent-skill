@@ -14,7 +14,11 @@ throw the rest away.
 
 ## Input
 
-A transcript, an article, a newsletter, a script, a call summary. If the user
+Read `~/.claude/linkedin/voice.md` if it exists, so the posts serve the
+user's goal and sound like them.
+
+A transcript, an article, a newsletter, a script, a call summary, a talk, a
+lecture, a thesis chapter, a project report. If the user
 gives a YouTube URL and there is a transcript tool available in the session,
 use it; otherwise ask them to paste the text. Read the whole thing before
 extracting anything.

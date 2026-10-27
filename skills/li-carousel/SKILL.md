@@ -14,6 +14,9 @@ one large 2025-26 analysis found them earning more reach, engagement and saves
 than the average post, partly because every swipe counts as time spent. The format rewards one idea broken into steps.
 It punishes a text post cut into pieces.
 
+Read `~/.claude/linkedin/voice.md` if it exists, so the slides speak to the
+user's audience and goal, in their voice.
+
 ## When to use it instead of a text post
 
 Use a carousel when the idea has **sequence** - steps, a countdown, a

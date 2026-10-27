@@ -1,5 +1,32 @@
 # Changelog
 
+## 1.3.0 (27 Oct 2026) - for any career
+
+- New `/li-start` skill, the first step: asks what the user does, their main
+  goal on LinkedIn (A. Get hired, B. Start my career, C. Grow where I am,
+  D. Win clients, E. Grow a business, F. Build an audience, G. Hire people,
+  H. Learn and connect), who they want to reach, timezone, account type,
+  what's off limits and three samples of their writing; shows a summary to
+  confirm, then saves it to voice.md.
+- Every skill now reads the user's goal and adapts. No skill assumes the
+  user is selling something:
+  - li-profile: headline formula and About structure per goal; rubric scores
+    against the user's own target reader.
+  - li-plan: the "Offer" post is now an "Ask" that fits the goal (a role, an
+    internship, clients, a hire...); "buyers" are now "decision-makers";
+    posting times cover audiences that don't sit at desks.
+  - li-dm: a first small ask for each kind of outreach (referral, mentor,
+    internship, client, hire, collaboration).
+  - li-inbox and li-reply: LEAD is now OPPORTUNITY, defined by the goal.
+  - li-audit: measures posts against what the goal needs (interviews,
+    enquiries, followers, applications...), not just engagement.
+  - li-post, li-comment, li-carousel, li-repurpose: aim at the goal, and
+    translate business examples to the user's field and currency.
+- Respects confidentiality and private job searches across all skills.
+- voice template: career stage, goal, what you offer, privacy of job search.
+- Tests: 98 checks, including that every skill reads the profile and none
+  uses sales-only wording.
+
 ## 1.2.0 (27 Oct 2026)
 
 - HOW-TO-USE.md: install for the Claude app and Claude Code, first-time

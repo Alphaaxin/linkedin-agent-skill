@@ -17,17 +17,28 @@ posted it.
 ## Before you write
 
 1. Read `~/.claude/linkedin/voice.md` if it exists. That file is the user's
-   voice profile: how they talk, what they never say, who they are talking to.
-   If it does not exist, ask for **three of their own past posts**, plus their
-   audience's timezone and whether they are on a free or Premium account,
-   infer the voice from those, and write the file using `voice-template.md`
-   in this folder. Do not skip this and do not invent a voice. A post in the
-   wrong voice is worse than no post.
-2. Read `~/.claude/linkedin/plan.md` if it exists, for this post's slot,
+   profile and voice: who they are, their `Main goal` (A-H), who they want to
+   reach, how they talk and what they never say. If it does not exist, run
+   the `/li-start` questions first (in one message: what they do, their main
+   goal, who they want to notice them, timezone, account type, anything off
+   limits, and three things they've written), and write the file using
+   `voice-template.md` in this folder. Do not skip this and do not invent a
+   voice. A post in the wrong voice is worse than no post.
+2. **Aim the post at the goal.** The same idea becomes a different post for a
+   job seeker (show what you can do for a team), a freelancer (show what you
+   do for clients), a student (show what you're learning and building), an
+   employee (show what you're good at, within employer rules), a founder
+   (show what the business does for customers), a recruiter (show why people
+   should join). Respect anything the profile marks off limits: confidential
+   patients, clients or employer details, a private job search.
+3. Read `~/.claude/linkedin/plan.md` if it exists, for this post's slot,
    theme and suggested hook.
-3. Read `hooks.json` in this folder. All 21 formulas, with templates, filled
-   examples, what each is for, and how each one usually gets ruined.
-4. If the idea is thin - "post about AI" - do not pad it. Ask one batched
+4. Read `hooks.json` in this folder. All 21 formulas, with templates, filled
+   examples, what each is for, and how each one usually gets ruined. The
+   examples come from business; translate them to the user's field and
+   currency (a nurse's Number Reveal counts shifts or patients, a teacher's
+   counts students, a developer's counts users or hours saved).
+5. If the idea is thin - "post about AI" - do not pad it. Ask one batched
    question: what happened, to whom, and what did it cost or return. A post
    needs one specific true thing. Get it before writing.
 
@@ -106,8 +117,9 @@ the file's contents, and at the end give them the updated contents to save.
 ## Rules that make the difference
 
 - **One idea per post.** If the draft has two, you have two posts. Say so.
-- **Numbers over adjectives.** "$4,200" beats "a lot". If the user has not
-  given you a number, ask for one rather than writing around the hole.
+- **Numbers over adjectives.** "₹40,000", "120 students" or "3 night shifts"
+  beats "a lot", in any field. If the user has not given you a number, ask for
+  one rather than writing around the hole.
 - **No engagement bait.** "Thoughts?" and "Agree?" are dead. The closing
   question has to be one only this post could ask.
 - **Three hashtags maximum**, at the bottom, and only if they are real
@@ -119,8 +131,8 @@ the file's contents, and at the end give them the updated contents to save.
   in the receipt. If the goal is clicks (a sign-up, a launch, a job post), keep
   the link in the body and accept the smaller reach. Never put a link in
   line 1.
-- **Never fabricate.** No invented metrics, clients, revenue figures or
-  outcomes under the user's name, even as a placeholder. If a number is
+- **Never fabricate.** No invented metrics, clients, employers, patients,
+  grades, revenue figures or outcomes under the user's name, even as a placeholder. If a number is
   needed and unknown, leave `{{your number}}` in the draft and flag it.
 
 ## Example

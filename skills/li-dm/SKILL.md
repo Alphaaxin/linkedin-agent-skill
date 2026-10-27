@@ -14,14 +14,32 @@ second one. Neither is a pitch.
 
 ## Before writing, get the specifics
 
-Ask for, in one batched question:
+Read `~/.claude/linkedin/voice.md` first for who the user is and their
+`Main goal` (A-H, from `/li-start`). If there is no saved profile, ask what
+they do and what they want from LinkedIn in one line before starting.
+
+Then ask for, in one batched question:
 
 1. **Who** - name, role, company.
 2. **The hook** - the actual reason to reach out now. A post they wrote, a
-   thing their company shipped, a mutual connection, a talk they gave. Not
-   "they fit my ICP".
-3. **What the user wants** - a conversation, a referral, a job, a sale. Be
-   honest internally, even if the message does not lead with it.
+   thing their company shipped, a mutual connection, a talk they gave, a
+   shared school or employer. Not "they're in my target industry".
+3. **What the user wants** - advice, a referral, a job, an internship, a
+   mentor, a client, a hire, a collaboration, or just to connect. Be honest
+   internally, even if the message does not lead with it.
+
+**The small ask, by what the user wants** (message one never asks for the
+big thing):
+
+| They want | First small ask | Never in message one |
+| --- | --- | --- |
+| A job or referral | one question about the team or role | "can you refer me?" |
+| An internship or first job | 10 minutes of advice on getting into the field | a CV attachment |
+| A mentor | one specific question they're well placed to answer | "will you be my mentor?" |
+| A client or customer | something useful for free, then "worth a 15-minute call?" | a sales deck or price list |
+| To hire someone | why their work caught your eye, and the role in one line | a generic job description |
+| A collaboration | the idea in one sentence | a long proposal |
+| Just to connect | a genuine reaction to their work | any ask at all |
 
 If there is no specific reason to message this person today, say so. A message
 with no reason is what everyone else sends, and it is why their reply rate is

@@ -50,7 +50,7 @@ def verdict(text):
 # 1. Pack structure ---------------------------------------------------------
 
 skills = sorted(glob.glob(os.path.join(ROOT, "skills", "*", "SKILL.md")))
-check("11 skills present", len(skills) == 11, f"found {len(skills)}")
+check("12 skills present", len(skills) == 12, f"found {len(skills)}")
 for path in skills:
     folder = os.path.basename(os.path.dirname(path))
     text = open(path, encoding="utf-8").read()
@@ -75,6 +75,21 @@ total = sum(i["points"] for i in rubric["items"])
 check("profile rubric adds up to 100", total == 100, f"adds up to {total}")
 check("voice template ships inside li-post",
       os.path.exists(os.path.join(ROOT, "skills/li-post/voice-template.md")))
+
+# Career-neutral: every skill except the humanizer reads the user's profile,
+# and no skill assumes the user is selling.
+for path in skills:
+    folder = os.path.basename(os.path.dirname(path))
+    text = open(path, encoding="utf-8").read()
+    if folder != "li-human":
+        check(f"{folder}: reads the user's profile (voice.md)", "voice.md" in text)
+    check(f"{folder}: no sales-only wording", not re.search(r"\bLEAD\b|\bbuyers\b|what the user sells|ICP", text))
+start = open(os.path.join(ROOT, "skills/li-start/SKILL.md"), encoding="utf-8").read()
+goals = re.findall(r"^\| ([A-H])\. ", start, re.M)
+check("li-start goal table covers goals A-H", goals == list("ABCDEFGH"), str(goals))
+template = open(os.path.join(ROOT, "skills/li-post/voice-template.md"), encoding="utf-8").read()
+check("voice template asks for the main goal", "Main goal" in template)
+check("voice templates in sync", template == open(os.path.join(ROOT, "templates/voice.md"), encoding="utf-8").read())
 
 # Every /li-xxx a skill mentions must exist.
 names = {os.path.basename(os.path.dirname(p)) for p in skills}

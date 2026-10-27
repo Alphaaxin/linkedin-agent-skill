@@ -1,8 +1,13 @@
 # How to use the LinkedIn agent skills
 
-Eleven skills that help you run a LinkedIn account with Claude: writing posts,
+Twelve skills that help you run a LinkedIn account with Claude: writing posts,
 comments, replies and messages, fixing your profile, planning your week and
 checking what works.
+
+**Built for any career.** Students, job seekers, employees, freelancers,
+founders, creators, recruiters - nurses, engineers, teachers, designers,
+shop owners. You start by telling Claude who you are and what you want from
+LinkedIn, and every skill adapts to that.
 
 **They write. You post.** Nothing here posts to LinkedIn for you, and nothing
 invents numbers or results under your name.
@@ -18,7 +23,8 @@ Pick the one that matches how you use Claude.
 1. Turn on **Code execution and file creation** (newer layout: **Create and
    edit files**) in **Settings → Capabilities**. Skills need it.
 2. Download the skill ZIPs from the [`dist/`](dist) folder of this repo. Each
-   skill is its own ZIP. Start with these four:
+   skill is its own ZIP. Start with these five:
+   - `li-start.zip` (asks who you are; run it first)
    - `li-post.zip` (writes posts)
    - `li-human.zip` (makes drafts sound like you; li-post uses it)
    - `li-profile.zip` (scores and rewrites your profile)
@@ -48,30 +54,47 @@ In any Claude session that can run commands, paste:
 ```
 https://github.com/Alphaaxin/linkedin-agent-skill
 
-Install this skill, then confirm /li-post works.
+Install this skill, then confirm /li-start works.
 ```
 
 ### Check it worked
 
-Type `/li-post` in a new chat. If Claude starts asking for your past posts or
-your idea, it's installed. (Claude Code may show it as
-`/linkedin-agent:li-post`; both are the same skill.)
+Type `/li-start` in a new chat. If Claude asks what you do and what you want
+from LinkedIn, it's installed. (Claude Code may show it as
+`/linkedin-agent:li-start`; both are the same skill.)
 
 ---
 
-## 2. First-time setup: your voice (5 minutes)
+## 2. First-time setup: tell Claude who you are (5 minutes)
 
-Every skill reads a small file called `voice.md` that describes how you write
-and who you're writing for. Without it, everything sounds generic.
+Type **`/li-start`**. Claude asks, in one message:
 
-The easy way: start `/li-post` and paste **three of your own past posts** (or
-any three things you've written: messages, captions, emails). Claude also
-asks:
+1. **What do you do?** In your own words: "final-year nursing student",
+   "backend engineer at a bank", "freelance video editor", "I run a bakery".
+2. **What do you want from LinkedIn?** One main goal:
 
-- who your audience is, and their **timezone** (for posting times)
-- whether your LinkedIn is **Free or Premium** (changes invite-note limits)
+   | | Goal | For example |
+   | --- | --- | --- |
+   | A | Get hired | job seekers, people switching jobs or fields |
+   | B | Start my career | students, new graduates, interns |
+   | C | Grow where I am | employees who want to be known for their work |
+   | D | Win clients | freelancers, consultants, agencies |
+   | E | Grow a business | founders, shop and business owners |
+   | F | Build an audience | creators, coaches, writers, speakers |
+   | G | Hire people | recruiters, hiring managers |
+   | H | Learn and connect | anyone who wants a stronger network |
 
-Claude then writes `voice.md` for you. The template is in
+3. **Who you want to notice you**, where they are, and your timezone.
+4. **Free or Premium** LinkedIn.
+5. **Anything you can't post about**: employer rules, patients or clients,
+   a job search your boss doesn't know about.
+6. **Three things you've written**, so Claude learns your voice. Never
+   posted? Messages or captions work.
+
+Claude shows you a short summary of "you on LinkedIn" to check, then saves it
+as `voice.md`. Every skill reads it: a job seeker's headline, posts and
+messages come out completely different from a shop owner's. Changed jobs or
+goals? Run `/li-start` again. The template is in
 [`templates/voice.md`](templates/voice.md) if you'd rather fill it in yourself.
 
 In the Claude app, files may not be kept between chats. If Claude can't save
@@ -80,26 +103,35 @@ files) and paste it at the start of a chat when needed.
 
 ---
 
-## 3. The eleven skills
+## 3. The twelve skills
 
 | Type | Use it when | Give it | You get |
 | --- | --- | --- | --- |
+| `/li-start` | First time, or your goal changes | Answers to a few questions | Your profile and voice, saved for every skill |
 | `/li-post` | You want a post | One idea, ideally with a real number or story | 3 hook options, 1 full draft, humanized, ready to copy |
 | `/li-carousel` | Your idea has steps or a list | The idea or a list | Slide-by-slide text, the caption, and a PDF to upload |
 | `/li-human` | Any draft sounds like AI | The draft | A cleaned draft, lines to rewrite, and a score out of 100 |
 | `/li-comment` | You want to comment on someone's post | Their post text (copy it or screenshot it) | 2 comment options of different types |
 | `/li-reply` | People commented on your post | The comments | A reply for each one worth answering, most important first |
 | `/li-dm` | You want to message or connect with someone | Who they are, why now, what you want | Invite note, first message, 2 follow-ups |
-| `/li-inbox` | Your inbox is messy | Screenshots or pasted messages | Sorted into leads, recruiters, peers, asks and spam, with replies |
+| `/li-inbox` | Your inbox is messy | Screenshots or pasted messages | Sorted into opportunities, recruiters, peers, asks and spam, with replies |
 | `/li-profile` | You want a better profile | Screenshots of your profile | A score out of 100 and rewrites, worst part first |
-| `/li-plan` | You don't know what to post this week | What happened this week, what you sell | A day-by-day plan with hooks and who to engage with |
+| `/li-plan` | You don't know what to post this week | What happened this week | A day-by-day plan with hooks and who to engage with |
 | `/li-repurpose` | You have a video, blog or transcript | The text or transcript | 4-6 separate post ideas for the week |
 | `/li-audit` | You want to know what's working | Your post analytics (export or screenshots) | What to stop, what to do more of, with the numbers |
 
 ### Example prompts you can copy
 
 ```
+/li-start I'm a hospital pharmacist in Chennai. I want to move into a regulatory affairs role at a pharma company. My current employer doesn't know I'm looking.
+```
+
+```
 /li-post I ran Instagram for a coding club and grew it from 300 to 2,100 followers in 8 months. Main lesson: reels of real members beat designed posters.
+```
+
+```
+/li-post Last week I taught fractions using pizza boxes and 28 of 30 kids got the test right, up from 17 last term.
 ```
 
 ```
@@ -126,12 +158,20 @@ files) and paste it at the start of a chat when needed.
 ```
 
 ```
+/li-dm I'm a final-year civil engineering student. I want advice from Arjun Mehta, a site engineer at L&T who studied at my college. I'd love a 10-minute chat about getting into infrastructure.
+```
+
+```
 /li-profile
 [attach screenshots of your profile: top, About, Experience, Skills]
 ```
 
 ```
 /li-plan This week I finished a client campaign (2,000 sign-ups), lost a pitch, and read a great case study on Taj Mahal Tea's rain billboard.
+```
+
+```
+/li-plan I'm a nurse. This week I trained two new starters, handled a tough night shift, and passed my IV certification.
 ```
 
 ```
@@ -153,7 +193,7 @@ about…" or "reply to these comments" also works.
 | Posting days | Post, then `/li-reply` to comments in the first hour | 15 minutes |
 | Once a week | `/li-inbox` on your messages | 10 minutes |
 | Once a month | `/li-audit` on your analytics | 20 minutes |
-| Once | `/li-profile`, then fix the profile | 1 hour |
+| Once | `/li-start`, then `/li-profile` and fix the profile | 1 hour |
 
 Two or three good posts a week beat seven weak ones.
 
@@ -166,7 +206,7 @@ folder, `~/.claude/linkedin/`:
 
 | File | Written by | Used by | What's in it |
 | --- | --- | --- | --- |
-| `voice.md` | `/li-post` (first run) | all skills | how you write, your audience, timezone, account type |
+| `voice.md` | `/li-start` (or `/li-post` on first run) | all skills | who you are, your goal, your audience, how you write, what's off limits |
 | `log.md` | `/li-post`, `/li-comment` | `/li-audit`, `/li-plan` | one line per post or comment you approved |
 | `plan.md` | `/li-plan` | `/li-post` | this week's plan |
 | `audit.md` | `/li-audit` | `/li-plan` | what to stop and do more of |
@@ -207,6 +247,9 @@ code execution). Without it, Claude does the checks by hand and says so.
 **Drafts don't sound like me.** Your `voice.md` is thin or missing. Paste three
 more of your own posts and say "update my voice.md from these".
 
+**The advice feels like it's for someone else** (sales talk when you're job
+hunting, say). Your goal isn't saved or is out of date. Run `/li-start` again.
+
 **Claude asks for a number I don't have.** Leave the `{{ }}` in, or cut that
 line. Don't make one up; readers notice.
 
@@ -215,7 +258,7 @@ line. Don't make one up; readers notice.
 ## 8. For contributors: check everything still works
 
 ```bash
-python3 tests/run_tests.py     # 60 checks: files, links between skills, humanizer behaviour
+python3 tests/run_tests.py     # 98 checks: files, links between skills, goal-awareness, humanizer
 python3 tools/build_zips.py    # rebuild the per-skill ZIPs in dist/
 ```
 

@@ -1,7 +1,7 @@
 ---
 name: li-inbox
 description: >-
-  Triage the LinkedIn inbox - sort connection requests and DMs into leads,
+  Triage the LinkedIn inbox - sort connection requests and DMs into opportunities,
   recruiters, peers and spam, and draft the replies worth sending. Use when the
   user says "my inbox is a mess", "triage my DMs", "should I reply to this",
   pastes a batch of LinkedIn messages, or is drowning in connection requests.
@@ -15,6 +15,10 @@ what is worth writing.
 
 ## Input
 
+Read `~/.claude/linkedin/voice.md` first for who the user is and their
+`Main goal` (A-H, from `/li-start`). If there is no saved profile, ask what
+they do and what they want from LinkedIn in one line before starting. The goal decides what counts as an OPPORTUNITY.
+
 The user pastes the messages. Screenshots are fine. Do not log into their
 account or read their inbox with a browser tool.
 
@@ -22,14 +26,15 @@ account or read their inbox with a browser tool.
 
 | bucket | signal | action |
 | --- | --- | --- |
-| **LEAD** | describes a problem the user solves, or asks about working together | reply today, full answer |
+| **OPPORTUNITY** | moves the user's goal forward: a client or customer enquiry (D, E), an interview or referral (A, B), an invitation to speak, write or collaborate (C, F, H), a strong candidate (G) | reply today, full answer |
 | **RECRUITER** | a role, a company, a salary band | reply if the role is real, one line if not |
 | **PEER** | someone in the same field with something to say | reply this week, keep it human |
 | **ASK** | wants advice, time, an intro, a favour | reply if it is cheap and specific, decline cleanly if not |
 | **SPAM** | agency pitch, lead-gen sequence, crypto, "quick question" with no question | archive, no reply |
 
-Print the counts first. Seeing "3 leads, 2 recruiters, 41 spam" is most of the
-value.
+Print the counts first. Seeing "3 opportunities, 2 recruiters, 41 spam" is
+most of the value. For a job seeker (goal A or B), RECRUITER messages are
+usually OPPORTUNITY: sort real, relevant ones there.
 
 ## Detecting a sequence
 
@@ -41,12 +46,14 @@ does not owe a reply to a script.
 
 ## Replies
 
-- **LEAD** - answer the actual question in the message, in full, for free. If
-  it is a fit, the offer is one sentence at the end. If it is not, say so and
-  point them somewhere useful. Both outcomes are good.
+- **OPPORTUNITY** - answer the actual question in the message, in full. If
+  it is a fit, the next step is one clear sentence at the end (a call, a CV,
+  a time to talk). If it is not, say so and point them somewhere useful. Both
+  outcomes are good.
 - **RECRUITER** - if the role is genuinely interesting, ask the three things
-  the message left out: comp band, level, and whether it is in-office. If it
-  is not, one line: not looking, happy to refer, and mean the refer.
+  the message left out: pay range, level, and whether it is in-office. If it
+  is not, one line: not looking, happy to refer, and mean the refer. If the
+  user's job search is private, keep replies to the recruiter only.
 - **ASK** - if it costs under ten minutes and is specific, do it. If it is
   "can I pick your brain", decline in one warm sentence and give them the one
   answer you would have given on the call. That is the polite version and it
@@ -60,7 +67,7 @@ Grouped by bucket, counts first, drafts only for the buckets that get replies,
 each one humanized. Then the gate: the user sends them.
 
 ```
-INBOX  ·  52 items  ·  3 LEAD, 2 RECRUITER, 4 PEER, 2 ASK, 41 SPAM
+INBOX  ·  52 items  ·  3 OPPORTUNITY, 2 RECRUITER, 4 PEER, 2 ASK, 41 SPAM
 
 SPAM  (41) - archive. 38 are the same sequence: no-specifics invite,
 "quick question" within 4 minutes of accept, calendar link in message one.

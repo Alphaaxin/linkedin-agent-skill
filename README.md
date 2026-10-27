@@ -1,15 +1,20 @@
-# The LinkedIn agent skill (v1.2, fixed and updated)
+# The LinkedIn agent skill (v1.3, for any career)
 
 > An updated version of [Jake Schincariol's linkedin-agent-skill](https://github.com/Jakeschincariol/linkedin-agent-skill),
-> MIT licensed. This version fixes the humanizer (it no longer swaps words
+> MIT licensed. This version works for any career - students, job seekers,
+> employees, freelancers, founders, creators and recruiters - starting with
+> `/li-start`, which asks who you are and what you want. It also fixes the humanizer (it no longer swaps words
 > blindly or turns every em dash into a comma), corrects several LinkedIn
 > facts for 2026, and adds LinkedIn's "Seems like AI slop" reporting to the
 > advice. Full list in [CHANGELOG.md](CHANGELOG.md).
 
-Eleven Claude skills that run a LinkedIn account. Free, MIT, no signup, no API
+Twelve Claude skills that run a LinkedIn account, for whoever you are. Free, MIT, no signup, no API
 key, nothing to connect.
 
-One of them writes your posts off 21 hook formulas. One comments on other
+The first one, `/li-start`, asks what you do and what you want from
+LinkedIn - a job, your first role, recognition, clients, customers, an
+audience, hires, or just a better network - and every other skill adapts to
+that. One of them writes your posts off 21 hook formulas. One comments on other
 people's posts. One handles the replies under yours. One scores your profile
 out of 100 and rewrites what lost points. One plans the week: what to post,
 when, and who to engage with.
@@ -45,27 +50,29 @@ commands:
 ```
 https://github.com/Alphaaxin/linkedin-agent-skill
 
-Install this skill, then confirm /li-post works.
+Install this skill, then confirm /li-start works.
 ```
 
-Then set up your voice: start `/li-post` and paste three of your own posts.
-Claude writes `~/.claude/linkedin/voice.md` from them, and every skill reads
-it. Skip it and everything comes out sounding like everyone else.
+Then run **`/li-start`**. It asks who you are, what you want from LinkedIn
+and how you write (paste three things you've written), and saves it to
+`~/.claude/linkedin/voice.md`. Every skill reads it. Skip it and everything
+comes out sounding like everyone else.
 
-## The eleven
+## The twelve
 
 | command | what it does |
 | --- | --- |
+| `/li-start` | Start here. Who you are, your goal (8 kinds, from "get hired" to "grow a business"), who you want to reach, what's off limits, your voice. Every other skill reads it. |
 | `/li-post` | One idea into a post. Three hook options from [21 formulas](skills/li-post/hooks.json), one full draft, humanized before you see it. |
 | `/li-comment` | Comments on other people's posts. Nine types, picked by what the post actually is. Never "Great post!". |
-| `/li-reply` | The thread under your own post. Sorts every comment into lead / substance / peer / support / noise, then writes in that order. |
+| `/li-reply` | The thread under your own post. Sorts every comment into opportunity / substance / peer / support / noise, then writes in that order. |
 | `/li-profile` | Scores your profile against a [12-part rubric](skills/li-profile/rubric.json) out of 100, then rewrites in fix-first order. |
 | `/li-plan` | The week. What to post, when to post it, and the 10 people to engage with. Writes `~/.claude/linkedin/plan.md`. |
 | `/li-human` | The humanizer. Two scripts that actually run. See below. |
 | `/li-carousel` | Document posts. Slide-by-slide copy, the cover that earns the swipe, and the PDF to upload. |
 | `/li-repurpose` | One video, newsletter or transcript into a week of posts that each stand alone. |
 | `/li-dm` | The invite note (200 characters free, 300 Premium, and only a few a month on free accounts), the first message, and the two follow-ups. Two. |
-| `/li-inbox` | Triages the inbox into lead / recruiter / peer / ask / spam, and tells you which tell gave the sequence away. |
+| `/li-inbox` | Triages the inbox into opportunity / recruiter / peer / ask / spam, and tells you which tell gave the sequence away. |
 | `/li-audit` | Post-mortem on what you have already published. Ranks by engagement rate and reach multiple, not impressions. |
 
 ## The humanizer
@@ -185,7 +192,7 @@ skills/li-human/detect.py        the five-check panel
 skills/li-profile/rubric.json    the 100-point profile score
 skills/li-post/voice-template.md the voice profile template (also in templates/voice.md)
 dist/li-*.zip                    one ZIP per skill, for uploading in the Claude app
-tests/run_tests.py               60 checks: files, links between skills, humanizer behaviour
+tests/run_tests.py               98 checks: files, links between skills, goal-awareness, humanizer
 tools/build_zips.py              rebuilds dist/ after you change a skill
 HOW-TO-USE.md                    the full guide
 ```
