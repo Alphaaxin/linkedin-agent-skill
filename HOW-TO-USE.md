@@ -30,14 +30,14 @@ Pick the one that matches how you use Claude.
 ### B. Claude Code (terminal)
 
 ```
-/plugin marketplace add OWNER/linkedin-agent-skill
+/plugin marketplace add Alphaaxin/linkedin-agent-skill
 /plugin install linkedin-agent
 ```
 
 Or copy the skill folders yourself:
 
 ```bash
-git clone https://github.com/OWNER/linkedin-agent-skill.git
+git clone https://github.com/Alphaaxin/linkedin-agent-skill.git
 cp -r linkedin-agent-skill/skills/li-* ~/.claude/skills/
 ```
 
@@ -46,7 +46,7 @@ cp -r linkedin-agent-skill/skills/li-* ~/.claude/skills/
 In any Claude session that can run commands, paste:
 
 ```
-https://github.com/OWNER/linkedin-agent-skill
+https://github.com/Alphaaxin/linkedin-agent-skill
 
 Install this skill, then confirm /li-post works.
 ```

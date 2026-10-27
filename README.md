@@ -35,7 +35,7 @@ Capabilities.
 **Claude Code, as a plugin:**
 
 ```
-/plugin marketplace add OWNER/linkedin-agent-skill
+/plugin marketplace add Alphaaxin/linkedin-agent-skill
 /plugin install linkedin-agent
 ```
 
@@ -43,7 +43,7 @@ Capabilities.
 commands:
 
 ```
-https://github.com/OWNER/linkedin-agent-skill
+https://github.com/Alphaaxin/linkedin-agent-skill
 
 Install this skill, then confirm /li-post works.
 ```
