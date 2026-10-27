@@ -1,4 +1,4 @@
-# The LinkedIn agent skill (v1.1, fixed and updated)
+# The LinkedIn agent skill (v1.2, fixed and updated)
 
 > An updated version of [Jake Schincariol's linkedin-agent-skill](https://github.com/Jakeschincariol/linkedin-agent-skill),
 > MIT licensed. This version fixes the humanizer (it no longer swaps words
@@ -196,7 +196,7 @@ Originally made by Jake Schincariol, [opusjake.ai](https://opusjake.ai).
 The original repo is [Jakeschincariol/linkedin-agent-skill](https://github.com/Jakeschincariol/linkedin-agent-skill)
 and the full write-up is at [opusjake.ai/r/linkedin-agent](https://opusjake.ai/r/linkedin-agent).
 
-This updated version (v1.1) is maintained by Mohammed Habeeb Hussain Alkaf.
+This updated version (v1.1 onward) is maintained by Mohammed Habeeb Hussain Alkaf.
 
 ## License
 
