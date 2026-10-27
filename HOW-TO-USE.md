@@ -14,16 +14,34 @@ invents numbers or results under your name.
 
 ---
 
-## 1. Install
+## Quick start: 3 steps
 
-Pick the one that matches how you use Claude.
+1. **Install** the skills (section 1 below; about 5 minutes).
+2. **Open a new chat and type `/li-start`.** Answer its questions about who
+   you are and what you want from LinkedIn.
+3. **Do what it suggests next.** Usually `/li-profile` (send screenshots of
+   your profile), then `/li-plan` and `/li-post` for your first week.
+
+Not sure which install is yours?
+
+| You use Claude... | Follow |
+| --- | --- |
+| on claude.ai, the Claude desktop app or the phone app | **A** |
+| in a terminal (Claude Code) | **B** |
+| in a session where Claude can run commands, and you'd rather it did the work | **C** |
+
+---
+
+## 1. Install
 
 ### A. Claude app (claude.ai, desktop or phone)
 
 1. Turn on **Code execution and file creation** (newer layout: **Create and
    edit files**) in **Settings → Capabilities**. Skills need it.
-2. Download the skill ZIPs from the [`dist/`](dist) folder of this repo. Each
-   skill is its own ZIP. Start with these five:
+2. Download the skill ZIPs from the [`dist/`](dist) folder of this repo: open
+   the folder, tap a ZIP, then tap the **download** button (the down-arrow
+   icon, top right of the file). Each skill is its own ZIP. Start with these
+   five:
    - `li-start.zip` (asks who you are; run it first)
    - `li-post.zip` (writes posts)
    - `li-human.zip` (makes drafts sound like you; li-post uses it)
